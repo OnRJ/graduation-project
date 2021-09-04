@@ -108,15 +108,8 @@ Example request: http://localhost:8080/rest/votes/100005/date?date={yyyy-MM-dd} 
 Access for roles: ADMIN, USER <br/>
 Request type: POST <br/>
 Example request: http://localhost:8080/rest/votes <br/>
-```json
-{
-  "restaurant" : {
-    "id": 100005
-  },
-  "user" : {
-    "id": 100001
-  }
-}
+```
+curl -X POST http://localhost:8080/rest/votes  -H "Content-Type: application/json"   -d '{"restaurant" : {"id": 100005}, "user" : {"id": 100002}}' --user "admin@gmail.com:admin"
 ```
 Attribute | Data type | Size | Required | Description
 --------- | --------- | ---- | -------- | -----------
