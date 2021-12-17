@@ -1,7 +1,10 @@
 package com.dailymenurating.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = Meal.GET, query = "SELECT m FROM Meal m WHERE m.id=:id AND m.menu.id=:menuId"),
         @NamedQuery(name = Meal.GET_ALL_FROM_MENU, query = "SELECT m FROM Meal m WHERE m.menu.id=:menuId"),
@@ -22,9 +25,6 @@ public class Meal extends AbstractNamedEntity {
     @ManyToOne(targetEntity = Menu.class)
     @JoinColumn(name = "menu_id")
     private Menu menu;
-
-    public Meal() {
-    }
 
     public Meal(int id, String name, double price) {
         this.id = id;

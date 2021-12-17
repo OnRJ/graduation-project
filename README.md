@@ -1,5 +1,6 @@
 # Graduation
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ba3014c01324de793cdebd8147b1bd8)](https://www.codacy.com/gh/OnRJ/graduation-project/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnRJ/graduation-project&amp;utm_campaign=Badge_Grade) 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4ba3014c01324de793cdebd8147b1bd8)](https://www.codacy.com/gh/OnRJ/graduation-project/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnRJ/graduation-project&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://app.travis-ci.com/OnRJ/graduation-project.svg?branch=main)](https://app.travis-ci.com/OnRJ/graduation-project.svg?branch=main)
 
 ## Get All meals
 Access for roles: ADMIN, USER <br/>

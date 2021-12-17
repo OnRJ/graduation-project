@@ -2,6 +2,9 @@ package com.dailymenurating.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,6 +13,9 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @NamedQueries({
         @NamedQuery(name = Menu.GET_ALL, query = "SELECT m FROM Menu m"),
         @NamedQuery(name = Menu.GET_ALL_BY_DATE, query = "SELECT m FROM Menu m WHERE m.date=:date"),
@@ -43,47 +49,10 @@ public class Menu extends AbstractBaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
-    public Menu() {
-    }
-
     public Menu(int id, Restaurant restaurant, LocalDate date, Set<Meal> meals) {
         super(id);
         this.restaurant = restaurant;
         this.date = date;
         this.meals = meals;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public Set<Meal> getMeals() {
-        return meals;
-    }
-
-    public void setMeals(Set<Meal> meals) {
-        this.meals = meals;
-    }
-
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "id=" + id +
-                ", restaurant=" + restaurant +
-                ", date=" + date +
-                ", meals=" + meals +
-                '}';
     }
 }

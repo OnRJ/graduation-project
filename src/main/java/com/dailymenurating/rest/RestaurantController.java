@@ -1,22 +1,17 @@
 package com.dailymenurating.rest;
 
-
 import com.dailymenurating.model.Restaurant;
 import com.dailymenurating.service.interfaces.RestaurantService;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-import static com.dailymenurating.util.ValidationUtil.checkId;
-import static org.slf4j.LoggerFactory.getLogger;
-
+@Slf4j
 @RestController
 @RequestMapping("/rest/restaurants")
 public class RestaurantController {
-    private static final Logger LOG = getLogger(RestaurantController.class);
     private final RestaurantService service;
 
     @Autowired
@@ -27,28 +22,31 @@ public class RestaurantController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('user:read')")
     public Restaurant get(@PathVariable Integer id) {
-        LOG.info("get restaurant with id {}", id);
-        return service.get(id);
+        Restaurant restaurant = service.get(id);
+        log.info("Get restaurant {}", restaurant);
+        return restaurant;
     }
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('user:read')")
     public List<Restaurant> getAll() {
-        LOG.info("getAll restaurants");
-        return service.getAll();
+        List<Restaurant> restaurantsList = service.getAll();
+        log.info("Get all restaurants {}", restaurantsList);
+        return restaurantsList;
     }
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('user:write')")
     public Restaurant create(@RequestBody Restaurant restaurant) {
-        LOG.info("create restaurant {}", restaurant);
-        return service.save(restaurant);
+        Restaurant newRestaurant = service.save(restaurant);
+        log.info("Create restaurant {}", newRestaurant);
+        return newRestaurant;
     }
 
     @DeleteMapping(value = "/{id}")
     @PreAuthorize("hasAnyAuthority('user:write')")
     public void delete(@PathVariable Integer id) {
-        LOG.info("delete restaurant with id {}", id);
+        log.info("Delete restaurant {}", service.get(id));
         service.delete(id);
     }
 }

@@ -1,0 +1,19 @@
+language: java
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_script:
+  - psql -c 'create database graduation' -U postgres
+  - psql -c 'create user "user"; grant all privileges on database graduation to "user"' -U postgres
+
+branches:
+  only:
+    - main
+
+services:
+  - postgresql
+
+notifications:
+  email: false

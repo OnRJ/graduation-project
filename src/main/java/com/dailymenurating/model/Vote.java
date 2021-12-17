@@ -1,12 +1,19 @@
 package com.dailymenurating.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-
+@Data
+@ToString(exclude = {"user"})
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @NamedQueries({
         @NamedQuery(name = Vote.GET_ALL, query = "SELECT v FROM Vote v WHERE v.date=:date"),
         @NamedQuery(name = Vote.GET_BY_USER_AND_DATE, query = "SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date"),
@@ -34,48 +41,4 @@ public class Vote extends AbstractBaseEntity {
     @Column(name = "datetime", nullable = false)
     @NotNull
     private LocalDate date;
-
-    public Vote() {
-    }
-
-    public Vote(int id, LocalDate date, Restaurant restaurant, User user) {
-        super(id);
-        this.date = date;
-        this.restaurant = restaurant;
-        this.user = user;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Override
-    public String toString() {
-        return "Vote{" +
-                "id=" + id +
-                ", date=" + date +
-                ", restaurant=" + restaurant +
-                ", user=" + user +
-                '}';
-    }
 }
